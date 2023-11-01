@@ -1,119 +1,97 @@
 package com.casestudy.InventoryService.entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "sold_stock")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "sold_stock")
 public class SoldStock {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "batch_id")
+    private String id;
     private String batchId;
-
-    @Column(name = "drug_name")
     private String drugName;
-
-    @Column(name = "supplier_email")
     private String supplierEmail;
-
-    @Column(name = "quantity")
     private int quantity;
-
-    @Column(name = "expiry_date")
     private String expiryDate;
-
-    @Column(name = "price")
     private double price;
-    
-    @Column(name = "total_price")
     private double totalPrice;
 
-	public SoldStock(Long id, String batchId, String drugName, String supplierEmail, int quantity, String expiryDate,
-			double price, double totalPrice) {
-		super();
-		this.id = id;
-		this.batchId = batchId;
-		this.drugName = drugName;
-		this.supplierEmail = supplierEmail;
-		this.quantity = quantity;
-		this.expiryDate = expiryDate;
-		this.price = price;
-		this.totalPrice = totalPrice;
-	}
+    public SoldStock() {
+        // Default constructor
+    }
 
-	public SoldStock() {
-		super();
-	}
+    public SoldStock(String batchId, String drugName, String supplierEmail, int quantity, String expiryDate, double price, double totalPrice) {
+        this.batchId = batchId;
+        this.drugName = drugName;
+        this.supplierEmail = supplierEmail;
+        this.quantity = quantity;
+        this.expiryDate = expiryDate;
+        this.price = price;
+        this.totalPrice = totalPrice;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    // Getters and setters for all fields
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getBatchId() {
-		return batchId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
+    public String getBatchId() {
+        return batchId;
+    }
 
-	public String getDrugName() {
-		return drugName;
-	}
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
+    }
 
-	public void setDrugName(String drugName) {
-		this.drugName = drugName;
-	}
+    public String getDrugName() {
+        return drugName;
+    }
 
-	public String getSupplierEmail() {
-		return supplierEmail;
-	}
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
 
-	public void setSupplierEmail(String supplierEmail) {
-		this.supplierEmail = supplierEmail;
-	}
+    public String getSupplierEmail() {
+        return supplierEmail;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public void setSupplierEmail(String supplierEmail) {
+        this.supplierEmail = supplierEmail;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public String getExpiryDate() {
-		return expiryDate;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate = expiryDate;
-	}
+    public String getExpiryDate() {
+        return expiryDate;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-	
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 }

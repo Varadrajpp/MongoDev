@@ -86,7 +86,7 @@ public class SoldStockController {
     public ResponseEntity<SoldStock> getSoldStockById(@PathVariable Long id) {
         long startTime = System.nanoTime();
         try {
-            SoldStock soldStock = soldStockRepository.findById(id).orElse(null);
+            SoldStock soldStock = soldStockRepository.findById(id.toString()).orElse(null);
             long responseTime = System.nanoTime() - startTime;
             logger.info("HTTP Status Code: {}, ResponseTime: {} ns - Sold Stock By ID Fetched Successfully", HttpStatus.OK.value(), responseTime);
             return new ResponseEntity<>(soldStock, HttpStatus.OK);
@@ -101,7 +101,7 @@ public class SoldStockController {
     public ResponseEntity<Void> deleteSoldStockById(@PathVariable Long id) {
         long startTime = System.nanoTime();
         try {
-            soldStockRepository.deleteById(id);
+            soldStockRepository.deleteById(id.toString());
             long responseTime = System.nanoTime() - startTime;
             logger.info("HTTP Status Code: {}, ResponseTime: {} ns - Sold Stock Deleted Successfully", HttpStatus.NO_CONTENT.value(), responseTime);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

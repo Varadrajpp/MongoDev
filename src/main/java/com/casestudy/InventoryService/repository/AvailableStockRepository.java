@@ -1,28 +1,28 @@
-package com.casestudy.InventoryService.repository;
-import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+
+package com.casestudy.InventoryService.repository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+//import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import com.casestudy.InventoryService.entity.AvailableStock;
 
 @Repository
-public interface AvailableStockRepository extends JpaRepository<AvailableStock, Long> {
+public interface AvailableStockRepository extends MongoRepository<AvailableStock, String> {
 
-	void deleteByDrugName(String drugName);
+    void deleteByDrugName(String drugName);
 
-	void deleteByBatchId(String batchId);
+    void deleteByBatchId(String batchId);
 
-	List<AvailableStock> findByDrugName(String drugName);
+    List<AvailableStock> findByDrugName(String drugName);
 
-	
+    AvailableStock findByBatchId(String batchId);
 
-	AvailableStock findByBatchId(String batchId);
+    List<AvailableStock> findAllByBatchId(String batchId);
 
-	List<AvailableStock> findAllByBatchId(String batchid);
-
-	AvailableStock findBySupplierEmail(String supplierEmail);
-
-	
+    AvailableStock findBySupplierEmail(String supplierEmail);
 }
+

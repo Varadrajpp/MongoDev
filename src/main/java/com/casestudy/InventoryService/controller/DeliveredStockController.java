@@ -84,7 +84,7 @@ public class DeliveredStockController {
     public ResponseEntity<DeliveredDrugs> getDeliveredStockById(@PathVariable Long id) {
         long startTime = System.nanoTime();
         try {
-            DeliveredDrugs deliveredStock = deliveredDrugsRepository.findById(id).orElse(null);
+            DeliveredDrugs deliveredStock = deliveredDrugsRepository.findById(id.toString()).orElse(null);
             long responseTime = System.nanoTime() - startTime;
             logger.info("HTTP Status Code: {}, ResponseTime: {} ns - Delivered Stock By ID Fetched Successfully", HttpStatus.OK.value(), responseTime);
             return new ResponseEntity<>(deliveredStock, HttpStatus.OK);

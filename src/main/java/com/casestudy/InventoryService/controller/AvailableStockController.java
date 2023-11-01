@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,7 @@ import com.casestudy.InventoryService.exception.UnableToUpdateStockException;
 import com.casestudy.InventoryService.repository.AvailableStockRepository;
 import com.casestudy.InventoryService.repository.SoldStockRepository;
 
-import jakarta.transaction.Transactional;
+
 
 @RestController
 @RequestMapping("/inventory/available-stock")
@@ -141,7 +142,7 @@ public class AvailableStockController {
         long startTime = System.nanoTime();
         UUID requestId = UUID.randomUUID();
         try {
-            AvailableStock stock = availableStockRepository.findById(id)
+            AvailableStock stock = availableStockRepository.findById(id.toString())
                     .orElseThrow(() -> new StockNotFoundException("Stock not found with ID: " + id));
             long responseTime = System.nanoTime() - startTime;
             logger.info("HTTP Status Code: {}, ResponseTime: {} ns, RequestId: {} - Stock Found with the Searched ID", HttpStatus.OK.value(), responseTime, requestId);
@@ -178,7 +179,7 @@ public class AvailableStockController {
         long startTime = System.nanoTime();
         UUID requestId = UUID.randomUUID();
         try {
-            availableStockRepository.deleteById(did);
+            availableStockRepository.deleteById(did.toString());
             long responseTime = System.nanoTime() - startTime;
             logger.info("HTTP Status Code: {}, ResponseTime: {} ns, RequestId: {} - Delete By StockID Successful", HttpStatus.NO_CONTENT.value(), responseTime, requestId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -245,7 +246,7 @@ public class AvailableStockController {
         long startTime = System.nanoTime();
         UUID requestId = UUID.randomUUID();
         try {
-            AvailableStock stock = availableStockRepository.findById(id).orElse(null);
+            AvailableStock stock = availableStockRepository.findById(id.toString()).orElse(null);
             if (stock != null) {
                 stock.setBatchId(updatedStock.getBatchId());
                 stock.setDrugName(updatedStock.getDrugName());

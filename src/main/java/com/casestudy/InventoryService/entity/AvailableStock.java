@@ -1,108 +1,85 @@
 package com.casestudy.InventoryService.entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "available_stock")
+@Document(collection = "available_stock")
 public class AvailableStock {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "batch_id")
+    private String id;
     private String batchId;
-
-    @Column(name = "drug_name")
     private String drugName;
-
-    @Column(name = "supplier_email")
     private String supplierEmail;
-
-    @Column(name = "quantity")
     private int quantity;
-
-    @Column(name = "expiry_date")
     private String expiryDate;
-
-    @Column(name = "price")
     private double price;
 
-	public Long getId() {
-		return id;
-	}
+    public AvailableStock() {
+        // Default constructor
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public AvailableStock(String batchId, String drugName, String supplierEmail, int quantity, String expiryDate, double price) {
+        this.batchId = batchId;
+        this.drugName = drugName;
+        this.supplierEmail = supplierEmail;
+        this.quantity = quantity;
+        this.expiryDate = expiryDate;
+        this.price = price;
+    }
 
-	public String getBatchId() {
-		return batchId;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setBatchId(String batchId) {
-		this.batchId = batchId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getDrugName() {
-		return drugName;
-	}
+    public String getBatchId() {
+        return batchId;
+    }
 
-	public void setDrugName(String drugName) {
-		this.drugName = drugName;
-	}
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
+    }
 
-	public String getSupplierEmail() {
-		return supplierEmail;
-	}
+    public String getDrugName() {
+        return drugName;
+    }
 
-	public void setSupplierEmail(String supplierEmail) {
-		this.supplierEmail = supplierEmail;
-	}
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public String getSupplierEmail() {
+        return supplierEmail;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setSupplierEmail(String supplierEmail) {
+        this.supplierEmail = supplierEmail;
+    }
 
-	public String getExpiryDate() {
-		return expiryDate;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public void setExpiryDate(String expiryDate) {
-		this.expiryDate = expiryDate;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public String getExpiryDate() {
+        return expiryDate;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void setExpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
-	public AvailableStock(Long id, String batchId, String drugName, String supplierEmail, int quantity,
-			String expiryDate, double price) {
-		super();
-		this.id = id;
-		this.batchId = batchId;
-		this.drugName = drugName;
-		this.supplierEmail = supplierEmail;
-		this.quantity = quantity;
-		this.expiryDate = expiryDate;
-		this.price = price;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public AvailableStock() {
-		super();
-	}
-    
-
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
